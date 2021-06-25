@@ -1,0 +1,53 @@
+<div class="chatApp" ng-class="{active : chatActive}" ng-init="chatActive = false">
+    <button class="btn btn-primary chatApp__toggler" ng-click="chatActive = !chatActive"><i ng-hide="chatActive" class="bi bi-chat-dots"></i><i ng-show="chatActive" class="bi bi-x-lg"></i></button>
+    <div class="chatApp__container">
+        <div class="chatApp__header">
+            <button class="btn retourTickets" ng-show="!showTickets" ng-click="showTickets = true">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <span class="text-center nom">Support<i class="bi bi-circle-fill chatApp__disponibilite" ng-class="{actif : disponibilite}"></i></span>
+            <span class="chatApp__close" ng-click="chatActive = false"><i class="bi bi-x-lg"></i></span>
+        </div>
+        <div class="chatApp__body">
+            <div class="chatApp__tickets" ng-show="showTickets">
+                <div class="newTicket text-center" ng-click="selectTicket(null)"><i class="bi bi-pencil-square"></i>&nbsp;Nouveau message</div>
+
+                <div class="scrollTickets">
+                    <div class="ticket" ng-repeat="ticket in tickets  | orderBy : '-dateLastMessage'"
+                        ng-click="selectTicket(ticket)">
+                        <span class="hour">{{ticket.dateLastMessage | lastMessageDateFilter}}</span>
+                        <span class="unreadMessages badge bg-primary">{{calcUnreadMessages(ticket)}}</span>
+                        <div class="destinataire"><span class="nom">Support<i style="display:none;" class="bi bi-circle-fill chatApp__disponibilite" ng-class="{actif : disponibilite}"></i></span><span class="badge status" ng-class="{'bg-warning' : ticket.status == 'In Progress', 'bg-success' : ticket.status == 'Closed'}">{{ticket.status}}</span></div>
+                        <div class="lastMessage">{{ticket.messages[ticket.messages.length - 1].text}}</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="chatApp__messages" ng-hide="showTickets" ng-click="updateLastViewedMessages()">
+                <div class="message_container" ng-repeat="msg in selectedTicket.messages track by msg._id">
+                    <div class="date_jour" ng-if="msgAdditionalInfos(msg, selectedTicket.messages[$index - 1], 'date')">
+                        {{msg.dateCreation | date}}
+                    </div>
+                    <p class="message" ng-class="{perso : msg.userId == infosChat.userId}">
+                        <span class="message_owner" ng-if="msgAdditionalInfos(msg, selectedTicket.messages[$index - 1], 'owner')">
+                            {{msg.userName}}
+                        </span>
+                        {{msg.text}}
+                        <span class="date_message">
+                            {{msg.dateCreation | date : 'HH:mm'}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="chatApp__form" ng-show="selectedTicket.status != 'Closed' && !showTickets">
+                <form ng-submit="sendMessage()">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="message" placeholder="Tapez votre message ...">
+                        <button class="btn btn-primary" type="submit"><i class="bi bi-envelope"></i></button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>

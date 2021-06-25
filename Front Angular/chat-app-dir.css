@@ -1,0 +1,282 @@
+.chatApp {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.chatApp .chatApp__toggler {
+  background-color: #149ad7;
+  border-color: #149ad7;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-shadow: 0 1px 10px 0 rgb(60 64 67 / 30%),
+    0 1px 10px 1px rgb(60 64 67 / 15%);
+}
+
+.chatApp .chatApp__toggler:hover {
+  background-color: #1183b7;
+  border-color: #1183b7;
+}
+
+.chatApp .chatApp__toggler i {
+  font-size: 25px;
+}
+
+.chatApp .chatApp__container {
+  display: none;
+  box-shadow: 0 1px 10px 0 rgb(60 64 67 / 30%),
+    0 1px 10px 1px rgb(60 64 67 / 15%);
+  width: 350px;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .chatApp {
+    width: 100%;
+    right: 0;
+    padding: 0 5px;
+    bottom: 10px;
+  }
+  .chatApp .chatApp__container {
+    width: 100%;
+  }
+  .chatApp.active .chatApp__container {
+    right: 0 !important;
+    position: relative !important;
+  }
+  .chatApp .chatApp__toggler {
+    right: 10px;
+  }
+
+  .chatApp.active .chatApp__toggler {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .chatApp .chatApp__close {
+    display: none;
+  }
+}
+
+.chatApp .chatApp__body {
+  height: 50vh;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatApp .chatApp__header {
+  padding: 10px;
+  text-align: center;
+  background-color: #149ad7;
+  color: #fff;
+  font-size: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.chatApp .chatApp__header .nom {
+  position: relative;
+}
+
+.chatApp.active .chatApp__container {
+  display: block;
+  position: absolute;
+  right: 66px;
+  bottom: 0;
+}
+
+.chatApp .chatApp__close {
+  cursor: pointer;
+  float: right;
+}
+
+.chatApp__tickets {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.chatApp__tickets .scrollTickets {
+  overflow-y: auto;
+}
+
+.chatApp__tickets .newTicket,
+.chatApp__tickets .ticket {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chatApp__tickets .newTicket {
+  color: #fff;
+  background-color: #283c7e;
+  border-color: #283c7e;
+  position: absolute;
+  border-radius: 30px;
+  bottom: 15px;
+  z-index: 1;
+  padding: 10px 20px;
+  box-shadow: 0 1px 20px 0 rgb(60 64 67 / 30%),
+    0 1px 20px 1px rgb(60 64 67 / 15%);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: fit-content;
+  width: -moz-fit-content;
+}
+
+.chatApp__tickets .newTicket:hover {
+  background-color: #1f2f63;
+  border-color: #1f2f63;
+}
+
+.chatApp__tickets .ticket {
+  position: relative;
+  border-bottom: 1px solid lightgray;
+}
+
+.chatApp__tickets .ticket .hour {
+  position: absolute;
+  right: 10px;
+}
+
+.chatApp__tickets .ticket .unreadMessages {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.chatApp__tickets .ticket .destinataire {
+  font-weight: bold;
+}
+
+.chatApp__tickets .ticket .destinataire .nom {
+  position: relative;
+  margin-right: 15px;
+}
+
+.chatApp__disponibilite {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  color: #ff4444;
+  font-size: 0.7rem;
+}
+
+.chatApp__disponibilite.actif {
+  color: #59ce00;
+}
+
+.chatApp__tickets .ticket .lastMessage {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatApp__tickets .ticket .badge.status {
+  border-radius: 10px;
+}
+
+.chatApp__tickets .ticket:hover {
+  background-color: #f7f5fb;
+}
+
+.chatApp__messages {
+  flex: 5;
+  background-color: #f7f5fb;
+  overflow-y: auto;
+  padding: 0 10px;
+}
+
+.chatApp__messages .message {
+  position: relative;
+  font-size: 16px;
+  padding: 5px;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #000;
+  margin-bottom: 30px;
+  max-width: 75%;
+  width: -moz-fit-content;
+}
+
+.chatApp__messages .message.perso {
+  margin-left: auto;
+  background-color: #149ad7;
+  color: #fff;
+}
+
+.chatApp__messages .message .date_message {
+  position: absolute;
+  bottom: -15px;
+  font-size: 12px;
+  right: 0;
+  color: #000;
+}
+
+.chatApp__messages .message .message_owner {
+  position: absolute;
+  top: -20px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #91c251;
+}
+
+.chatApp__messages .message.perso .message_owner {
+  right: 5px;
+}
+
+.chatApp__messages .message_container .date_jour {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Track */
+.chatApp ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.chatApp ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.chatApp ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.chatApp ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.chatApp__form input {
+  border-radius: 0;
+  border-bottom-left-radius: 20px;
+}
+
+.chatApp__form button {
+  border-radius: 0;
+  border-bottom-right-radius: 20px;
+}
+
+.retourTickets {
+  color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 25px;
+}
+
+.retourTickets:hover {
+  color: #fff;
+}
+
+.retourTickets:focus {
+  box-shadow: none;
+}

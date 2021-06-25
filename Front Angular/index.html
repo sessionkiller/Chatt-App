@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="lib/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="lib/bootstrap-icons-1.5.0/bootstrap-icons-1.5.0/bootstrap-icons.css" rel="stylesheet">
+    <link href="chat-app-dir.css" rel="stylesheet">
+    <title>Chat App</title>
+</head>
+<body ng-app="ChatApp" ng-controller="ChatAppCtrl">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Chat App</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" ng-click="setOrigine('Home')" ng-class="{active : infosChat.origine == 'Home'}" href="#">Home</a>
+              <a class="nav-link" ng-click="setOrigine('Features')" ng-class="{active : infosChat.origine == 'Features'}" href="#">Features</a>
+              <a class="nav-link" ng-click="setOrigine('Pricing')" ng-class="{active : infosChat.origine == 'Pricing'}" href="#">Pricing</a>
+              <a class="nav-link" ng-click="setOrigine('Commandes')" ng-class="{active : infosChat.origine == 'Commandes'}" href="#">Commandes</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <chat-app-dir infos-chat="infosChat"></chat-app-dir>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
